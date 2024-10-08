@@ -46,7 +46,17 @@ float specular[] = { 1.0, 1.0, 1.0, 1.0 };
 float shininess[] = { 50.0 };
 
 void problem1() {
-    // TODO: Your code here!
+    
+    glPushMatrix(); // Save the current transformation matrix
+
+    // Set the position and orientation of the teapot if desired
+    glTranslatef(0.0f, 0.0f, 0.0f); // Move the teapot to the origin (adjust as needed)
+    glColor3f(0.5f, 0.2f, 0.8f); // Set the color of the teapot (adjust as needed)
+    
+    glutSolidTeapot(1.0); // Draw a solid teapot with a size of 1.0
+
+    glPopMatrix(); // Restore the previous transformation matrix
+
 }
 
 void problem2() {
