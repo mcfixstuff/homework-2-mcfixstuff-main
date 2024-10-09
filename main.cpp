@@ -77,18 +77,17 @@ void problem1()
 void problem2()
 {
     int totalPieces = 11;
-    float baseWidth = 2.0f;   // Width of the base (largest) rectangular prism
-    float baseHeight = 0.2f;  // Height of each prism layer
-    float baseDepth = 2.0f;   // Depth of the base rectangular prism
-    float yOffset = -2.5f;     // Starting y-offset for the pyramid (stack height)
-    
+    float baseWidth = 2.0f;   
+    float baseHeight = 0.2f;  
+    float baseDepth = 2.0f;   
+    float yOffset = -2.5f;     
     // Loop through all 11 pieces, creating progressively smaller prisms
     for (int i = 0; i < totalPieces; i++)
     {
-        glPushMatrix();  // Save the current transformation matrix
+        glPushMatrix(); 
 
-        // Calculate the scaling factors for each rectangular prism
-        float scaleFactor = 1.0f - (i * 0.08f);  // Make each level slightly smaller
+        
+        float scaleFactor = 1.0f - (i * 0.08f);
         float width = baseWidth * scaleFactor;
         float depth = baseDepth * scaleFactor;
         float height = baseHeight;
@@ -96,7 +95,7 @@ void problem2()
         // The last (top) piece is a cube
         if (i == totalPieces - 1)
         {
-            width = height = depth = baseHeight;  // Make the top piece a cube
+            width = height = depth = baseHeight;  // make the top piece a cube
         }
 
         // Position each rectangular prism along the y-axis, stacking them
@@ -105,11 +104,11 @@ void problem2()
         // Draw a rectangular prism by scaling a cube
         glScalef(width, height, depth);
         glColor3f(0.5f, 0.8f - (i * 0.06f), 0.4f + (i * 0.03f));  // Vary color slightly
-        glutSolidCube(1.0);  // Use glutSolidCube to draw a cube, which we'll scale into a prism
+        glutSolidCube(1.0); 
 
-        glPopMatrix();  // Restore the previous transformation matrix
+        glPopMatrix();  // restore the previous transformation matrix
 
-        // Increment the y-offset for the next prism
+        // increment the y-offset for the next prism
         yOffset += height;
     }
 }
@@ -159,7 +158,7 @@ void problem3()
 
 void problem4()
 {
-    // TODO: Your code here!
+    
 }
 
 void display()
