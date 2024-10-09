@@ -36,11 +36,11 @@ using namespace std;
 
 bool leftDown = false, rightDown = false;
 int lastPos[2];
-float cameraPos[4] = {0, 1, 4, 1};
+float cameraPos[4] = {0, 0, 4, 1};
 int windowWidth = 800, windowHeight = 600;
 double xRot = 0;
 double yRot = 0;
-int curProblem = 2; // TODO: change this number to try different examples
+int curProblem = 3; // TODO: change this number to try different examples
 
 float specular[] = {0.2, 0.2, 0.2, 0.2};
 float shininess[] = {1.0};
@@ -117,8 +117,45 @@ void problem2()
 
 void problem3()
 {
-    // TODO: Your code here!
+    float teapotSize = 0.2f; 
+    float distance = 1.0f;    
+    struct TeapotPosition {
+        float x, y, z;  
+        float rotationY;     
+    };
+
+    TeapotPosition teapots[] = {
+        {-distance, 0.0f,  distance,  135.0f},  
+        {-distance, 0.0f, -distance,  45.0f},   
+
+        {distance, 0.0f,  distance,  -135.0f},  
+        {distance, 0.0f, -distance,  -45.0f},   
+
+        {0.0f, 0.0f,  distance,     180.0f}, 
+        {0.0f, 0.0f, -distance,      0.0f},    
+
+        {-distance, 0.0f,  0.0f,      90.0f}, 
+        {distance, 0.0f,  0.0f,     -90.0f}   
+    };
+
+    // loop through each teapot and position it
+    for (int i = 0; i < 8; i++)
+    {
+        glPushMatrix(); 
+
+        glTranslatef(teapots[i].x, teapots[i].y, teapots[i].z);
+
+        glRotatef(teapots[i].rotationY, 0.0f, 1.0f, 0.0f); 
+        glRotatef(90.0f, 1.0f, 0.0f, 0.0f);  
+
+        glColor3f(0.8f, 0.3f, 0.3f); 
+        glutSolidTeapot(teapotSize);
+
+        glPopMatrix(); 
+    }
 }
+
+
 
 void problem4()
 {
@@ -161,7 +198,7 @@ glLightfv(GL_LIGHT0, GL_DIFFUSE, light0Diffuse);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(cameraPos[0], cameraPos[1], cameraPos[2], 0, -2, 0, 0, 1, 0);
+    gluLookAt(cameraPos[0], cameraPos[1], cameraPos[2], 0, 0, 0, 0, 1, 0);
 
     glLightfv(GL_LIGHT0, GL_POSITION, cameraPos);
 
