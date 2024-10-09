@@ -40,7 +40,7 @@ float cameraPos[4] = {0, 0, 4, 1};
 int windowWidth = 800, windowHeight = 600;
 double xRot = 0;
 double yRot = 0;
-int curProblem = 3; // TODO: change this number to try different examples
+int curProblem = 4; // TODO: change this number to try different examples
 
 float specular[] = {0.2, 0.2, 0.2, 0.2};
 float shininess[] = {1.0};
@@ -158,7 +158,52 @@ void problem3()
 
 void problem4()
 {
+    //BIG SAD BOYYYYYYYYYYYYYYYYYYYYYYYYY
+
     
+    float eyeRadius = 0.2f;  // Radius of the eyes
+    float eyeDistance = 0.6f; // Horizontal distance between the eyes
+    float faceYPosition = 1.0f;  // Height position for the eyes and face
+
+    // draw left eye
+    glPushMatrix();
+    glTranslatef(-eyeDistance, faceYPosition, 1.0f);
+    glColor3f(0.0f, 0.0f, 0.0f); 
+    glutSolidSphere(eyeRadius, 20, 20); 
+    glPopMatrix();
+
+    // draw right eye
+    glPushMatrix();
+    glTranslatef(eyeDistance, faceYPosition, 1.0f);  
+    glColor3f(0.0f, 0.0f, 0.0f); 
+    glutSolidSphere(eyeRadius, 20, 20);  
+    glPopMatrix();
+
+    
+    float mouthRadius = 0.8f;  
+    float mouthThickness = 0.1f;  
+    int segments = 20;  
+    float angleStep = 180.0f / segments; 
+
+    glPushMatrix();
+    glColor3f(0.0f, 0.0f, 0.0f); 
+    // draw mouth
+    for (int i = 0; i <= segments; i++)
+    {
+        float angle = angleStep * i;  
+        float radians = angle * 3.14159f / 180.0f;  //convert to radians
+
+        
+        float x = mouthRadius * cos(radians);
+        float y = mouthRadius * sin(radians) - 0.3f;  
+
+        glPushMatrix();
+        glTranslatef(x, y, 1.0f);  
+        glScalef(mouthThickness, mouthThickness, 0.2f);  
+        glutSolidCube(1.0f);  
+        glPopMatrix();
+    }
+    glPopMatrix();
 }
 
 void display()
